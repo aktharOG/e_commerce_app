@@ -238,10 +238,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 250,
                             child: ListView.separated(
                                 physics: const BouncingScrollPhysics(),
-                                separatorBuilder: (BuildContext ctx, int index) =>
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
+                                separatorBuilder:
+                                    (BuildContext ctx, int index) =>
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
                                 itemCount: products.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (BuildContext context, int index) {
@@ -267,70 +268,120 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // sales card
 
-                    HeadingText(
-                  text: "SALE",
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: primaryColor),
-                  height: 180,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, left: 20,bottom: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                HeadingText(
-                                  text: "GET 10% OFF",
-                                  color: Colors.grey,
+                  const HeadingText(
+                    text: "SALE",
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: primaryColor),
+                    height: 180,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20, left: 20, bottom: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  HeadingText(
+                                    text: "GET 10% OFF",
+                                    color: Colors.grey,
+                                    fontSize: 15,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  HeadingText(
+                                    text:
+                                        "Shop your favorites' at 10% off on\nselect products and categories.",
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
+                                ],
+                              ),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5))),
+                                child: const HeadingText(
+                                  text: "Shop Now",
                                   fontSize: 15,
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                HeadingText(
-                                  text:
-                                      "Shop your favorites' at 10% off on\nselect products and categories.",
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                ),
-                              ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(15),
+                                bottomRight: Radius.circular(15)),
+                            child: Image.asset(
+                              "assets/images/sale1.png",
+                              height: 200,
+                              width: 200,
+                              fit: BoxFit.cover,
                             ),
-                            ElevatedButton(
-                              onPressed: () {},
-                              child: HeadingText(text: "Shop Now",fontSize: 15,),
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5))),
-                            )
-                          ],
-                        ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  //! best deals
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      HeadingText(
+                        text: "Best Deals",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
-                      Expanded(
-                        child: Image.asset(
-                          "assets/images/sale1.png",
-                          height: 200,
-                          width: 200,
-                          fit: BoxFit.cover,
-                        ),
-                      )
+                      Icon(Icons.arrow_forward)
                     ],
                   ),
-                ),
-                  
-                SizedBox(height: 20,)
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 250,
+                    child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        separatorBuilder: (BuildContext ctx, int index) =>
+                            const SizedBox(
+                              width: 20,
+                            ),
+                        itemCount: products.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) {
+                          final data = products[index];
+                          return ProductItem(
+                              title: data["title"],
+                              brand: data["brand"],
+                              price: data["price"],
+                              image: data["image"],
+                              isFavorite: data["isFavorite"]);
+                        }),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
